@@ -1,0 +1,97 @@
+﻿<root>
+<!--Subset -->
+<!--subset Person, ["Andrew","Helen","Libby","Philip","Tony"]-->
+<set name="Person" datatype="string">
+  <literal>Andrew</literal>
+  <literal>Helen</literal>
+  <literal>Libby</literal>
+  <literal>Philip</literal>
+  <literal>Tony</literal>
+</set>
+<!--subset Order,  1..5-->
+<seq name="Order" datatype="int">
+  <lower>1</lower>
+  <upper>5</upper>
+</seq>
+<!--subset Topping, ["clams", "ham", "mushroom", "onion", "pepperoni"]-->
+<set name="Topping" datatype="string">
+  <literal>clams</literal>
+  <literal>ham</literal>
+  <literal>mushroom</literal>
+  <literal>onion</literal>
+  <literal>pepperoni</literal>
+</set>
+<!--subset Apartment, [7,24,26,41,60]-->
+<set name="Apartment" datatype="integer">
+  <literal>7</literal>
+  <literal>24</literal>
+  <literal>26</literal>
+  <literal>41</literal>
+  <literal>60</literal>
+</set>
+<!--Model-->
+<!--model Delivery
+  Map(Person,Apartment): apt
+  Map(Person,Order):order
+  Map(Person,Topping):topping-->""
+<model name="Delivery">
+  <variables>
+    <function name="apt" type="map" mode="unary">
+      <variable name="Person"/>
+      <variable name="Apartment"/>
+    </function>
+    <function name="order" type="map" mode="unary">
+      <variable name="Person"/>
+      <variable name="Order"/>
+    </function>
+    <function name="topping" type="map" mode="unary">
+      <variable name="Person"/>
+      <variable name="Topping"/>
+    </function>
+  </variables>
+</model>
+
+
+<constraints name="Delivery">
+  <!--//Each person lives in a different apartment, has a different order, and a different topping
+  forall p1,p2, p1 != p2 -> (apt(p1) != apt(p2) & order(p1) != order(p2) & topping(p1) != topping(p2))-->
+  <iterator type="forall">
+    <indexers>
+      <index name="p1" />
+      <index name="p2" />
+    </indexers>
+    <expression>
+      <function type="">
+        
+      </function>
+    </expression>
+  </iterator>
+  <!--//Tony received his pizza immediately before the person who ordered the mushroom pizza
+  forall p, topping(p) == "mushroom" -> order("Tony") == order(p)-1-->
+
+  <!--//Philip's apt number is 17 higher than that of the person who ordered the pizza with clams
+  forall p, topping(p) == "clams" -> apt("Philip") == apt(p)+17-->
+
+  <!--//The person whose pizza was delivered first has an apartment with a higher number than Helen
+  forall p, order(p) == 1 -> apt(p) > apt("Helen")-->
+
+  <!--//Helen's pizza was delivered immediately before the pepperoni pizza
+  forall p, topping(p) == "pepperoni" -> order("Helen") == order(p)-1-->
+
+  <!--//The ham pizza was received immediately before the pizza ordered by apt 24
+  forall p1,p2, topping(p1) == "ham" & apt(p2) == 24 -> order(p1) == order(p2)-1-->
+
+  <!--//The ham pizza was delivered to an apartment with a higher number than Andrew's
+  forall p, topping(p) == "ham" -> apt(p) > apt("Andrew")-->
+
+  <!--//Libby received her pizza immediately after the resident of apt 60
+  forall p, apt(p) == 60 -> order(p)+1 == order("Libby")-->
+
+  <!--//The person who ordered the onion pizza has an apt higher than Libby's
+  forall p, topping(p) == "onion" -> apt(p) > apt("Libby")-->
+
+  <!--//The person who ordered the onion pizza has an apt lower than the person whose order was 2nd"
+  forall p1,p2, topping(p1) == "onion" & order(p2) == 2 -> apt(p1) < apt(p2)-->
+    
+</constraints>
+</root>

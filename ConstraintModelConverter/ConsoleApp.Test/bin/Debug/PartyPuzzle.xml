@@ -1,0 +1,61 @@
+﻿<root>
+  <model name ="PartyPuzzle">
+    <variables>
+      <variable name="a" type="bool" />
+      <variable name="b" type="bool"/>
+      <variable name="c" type="bool"/>
+      <variable name="d" type="bool"/>
+      <variable name="e" type="bool"/>
+    </variables>
+  </model>
+  <constraints name="PartyPuzzle">
+    <!--//C1: if Alice attends, then either Bob or Evan attend
+    a -> (b | e)-->
+    <function type="conditional">
+      <variable name="a" />
+      <function type="or">
+        <variable name="b" />
+        <variable name="e" />
+      </function>
+    </function>    
+    <!--//C2: either Bob or Debra will attend, but not both
+    b^d-->
+    <function type="exclusiveor">
+      <variable name="b" />
+      <variable name="d" />
+    </function>
+    <!--//C3: if Cathy attends, then Alice and Bob attend
+    c -> (a & b)-->
+    <function type="conditional">
+      <variable name="c"/>
+      <function type="and">
+        <variable name="a" />
+      <variable name="b" />
+      </function>
+    </function>    
+    <!--/*
+    C4: either Alice will not attend or Bob will not attend
+    if Debra does not attend
+    */
+    !d -> (!a | !b)-->
+    <function type="conditional">
+      <function mode="unary" type="not">
+        <variable name="d"/>
+      </function>
+      <function type="or">
+        <function mode="unary" type="not">
+          <variable name="a"/>
+        </function>
+        <function mode="unary" type="not">
+          <variable name="b"/>
+        </function>
+      </function>
+    </function>    
+    <!--//C5: Alice or Cathy (or both) will attend
+    a | c-->
+    <function type="or">
+      <variable name="a"/>
+      <variable name="c"/>
+    </function>
+  </constraints>
+</root>

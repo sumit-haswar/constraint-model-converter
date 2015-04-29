@@ -1,0 +1,10 @@
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\ConsoleApp.Test.exe.config
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\ConsoleApp.Test.exe
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\ConsoleApp.Test.pdb
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\Converter.Core.dll
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\Converter.Core.pdb
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\obj\Debug\ConsoleApp.Test.csprojResolveAssemblyReference.cache
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\obj\Debug\ConsoleApp.Test.exe
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\obj\Debug\ConsoleApp.Test.pdb
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\PartyPuzzle.xml
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\ConsoleApp.Test\bin\Debug\PizzaDelivery.xml

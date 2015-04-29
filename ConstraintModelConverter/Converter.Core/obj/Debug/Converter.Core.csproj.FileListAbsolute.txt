@@ -1,0 +1,5 @@
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\Converter.Core\bin\Debug\Converter.Core.dll
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\Converter.Core\bin\Debug\Converter.Core.pdb
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\Converter.Core\obj\Debug\Converter.Core.dll
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\Converter.Core\obj\Debug\Converter.Core.pdb
+C:\Sumit\SumitWorkspace\A\CSULB\Spring-2015\697-Directed Research\constraint-model-converter\ConstraintModelConverter\Converter.Core\obj\Debug\Converter.Core.csprojResolveAssemblyReference.cache
