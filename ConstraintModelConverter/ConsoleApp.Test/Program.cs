@@ -1,8 +1,10 @@
 ﻿using Converter.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -52,7 +54,19 @@ namespace ConsoleApp.Test
                             IXMLClaraProcessor _processor = new XMLClaraProcessor();
                             XDocument xDocument = XDocument.Load(filePath);
                             //invoke processor for translation
-                            var claraOutput = _processor.ConvertXMlModelToClaraModel(xDocument);
+                            StringBuilder claraOutput = _processor.ConvertXMlModelToClaraModel(xDocument);
+                            
+                            //write clara output to file
+                            File.WriteAllText(@"C:\Sumit\Clara\ClaraFormat.clara", claraOutput.ToString());
+
+                            File.WriteAllText(@"C:\Sumit\Clara\filename_write", "load batch_file");
+
+                            //write search to Clara file
+                            //File.WriteAllText(@"C:\Sumit\Clara\filename_write", "search Delivery");
+
+                            Thread.Sleep(4000);
+
+                            File.WriteAllText(@"C:\Sumit\Clara\filename_write", "solution");
 
                             //display translated Clara specification in console    
                             Console.WriteLine(claraOutput);

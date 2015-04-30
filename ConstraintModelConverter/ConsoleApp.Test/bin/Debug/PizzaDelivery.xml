@@ -61,23 +61,130 @@
       <index name="p2" />
     </indexers>
     <expression>
-      <function type="">
-        
+      <function type="conditional">
+        <function type="notequal">
+          <variable name="p1"/>
+          <variable name="p2"/>
+        </function>
+        <function type="and">
+          <function type="notequal">
+            <function type="apt" mode="unary">
+              <variable name="p1"/>
+            </function>
+            <function type="apt" mode="unary">
+              <variable name="p2"/>
+            </function>
+          </function>
+          <function type="notequal">
+            <function type="order" mode="unary">
+              <variable name="p1"/>
+            </function>
+            <function type="order" mode="unary">
+              <variable name="p2"/>
+            </function>
+          </function>
+          <function type="notequal">
+            <function type="topping" mode="unary">
+              <variable name="p1"/>
+            </function>
+            <function type="topping" mode="unary">
+              <variable name="p2"/>
+            </function>
+          </function>
+        </function>
       </function>
     </expression>
   </iterator>
+  <!---->
   <!--//Tony received his pizza immediately before the person who ordered the mushroom pizza
   forall p, topping(p) == "mushroom" -> order("Tony") == order(p)-1-->
+  <iterator type="forall">
+    <indexers>
+      <index name="p" />
+    </indexers>
+    <expression>
+      <function type="conditional">
+        <function type="==">
+          <function>
+            <variable name="p"/>
+          </function>
+          <literal datatype="string" value="mushroom"/>
+        </function>
 
+        <function type="equality">
+          <function type="order" mode="unary">
+            <literal datatype="string" value="Tony"/>
+          </function>
+          <function type="difference">
+            <function type="order" mode="unary">
+              <variable name="p"/>
+            </function>
+            <literal datatype="integer" value="1"/>
+          </function>
+        </function>
+      </function>
+    </expression>
+  </iterator>
   <!--//Philip's apt number is 17 higher than that of the person who ordered the pizza with clams
   forall p, topping(p) == "clams" -> apt("Philip") == apt(p)+17-->
-
+  <iterator type="forall">
+    <indexers>
+      <index name="p" />
+    </indexers>
+    <expression>
+      <function type="conditional">
+        <function type="equality">
+          <function type="topping" mode="unary">
+            <variable name="p"/>
+          </function>
+          <literal datatype="string" value="clams"/>
+        </function>
+        <function type="equality">
+          <function type="apt" mode="unary">
+            <literal datatype="string" value="Philip"/>
+          </function>
+          <function type="sum">
+            <function type="apt" mode="unary">
+              <variable name="p"/>
+            </function>  
+            <literal datatype="integer" value="17"/>
+          </function>
+        </function>
+      </function>
+    </expression>
+  </iterator>
   <!--//The person whose pizza was delivered first has an apartment with a higher number than Helen
   forall p, order(p) == 1 -> apt(p) > apt("Helen")-->
 
   <!--//Helen's pizza was delivered immediately before the pepperoni pizza
   forall p, topping(p) == "pepperoni" -> order("Helen") == order(p)-1-->
+  <iterator type="forall">
+    <indexers>
+      <index name="p" />
+    </indexers>
+    <expression>
+      <function type="conditional">
+        <function type="equality">
+          <function type="topping" mode="unary">
+            <variable name="p"/>
+          </function>
+          <literal datatype="string" value="pepperoni"/>
+        </function>
 
+        <function type="equality">
+          <function type="order" mode="unary">
+            <literal datatype="string" value="Helen"/>
+          </function>
+          <function type="difference">
+            <function type="order" mode="unary">
+              <variable name="p"/>
+            </function>
+            <literal datatype="integer" value="1"/>
+          </function>
+        </function>
+      </function>
+    </expression>
+  </iterator>
   <!--//The ham pizza was received immediately before the pizza ordered by apt 24
   forall p1,p2, topping(p1) == "ham" & apt(p2) == 24 -> order(p1) == order(p2)-1-->
 

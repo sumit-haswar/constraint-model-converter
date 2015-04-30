@@ -105,9 +105,9 @@ namespace Converter.Core
 
                     switch (elementType)
                     {
-                        case "iterator":    //case for iterators
+                        case XMLTags.Iterator:    //case for iterators
                             //append iterator type
-
+                            constraintBuilder.AppendLine(Constants.Tab + this.ExpandIterators(constraint));
                             //append iterator arguments
 
                             //append iterator expression
@@ -122,6 +122,40 @@ namespace Converter.Core
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="constraint"></param>
+        /// <returns></returns>
+        private string ExpandIterators(XElement constraint)
+        {
+            //get indexers from indexers tag
+            List<string> indexerList = new List<string>();
+
+            XElement indexersElem = constraint.Element(XMLTags.Indexers);
+            IEnumerable<XElement> indexers = indexersElem.Elements(XMLTags.Index);
+
+            if (indexers != null && indexers.Count() > 0)
+                indexers.ForEach(index => { indexerList.Add(index.HasElements ? index.Value : index.GetAttributeValue(XMLAttributes.Name)); });
+
+            //get expression from expressiontag
+            string expression = string.Empty;
+            XElement expressionElem = constraint.Element(XMLTags.Expression);
+            IEnumerable<XElement> funcElements = expressionElem.Elements(XMLTags.Function);
+            if (funcElements != null && funcElements.Count() > 0)
+            {
+                foreach (var f in funcElements)
+                {
+                    string funcExpr = this.ExpandFunctionRecursive(f);
+                    expression = expression + funcExpr;
+                }
+            }
+                //funcElements.ForEach(f => string.Concat(expression, this.ExpandFunctionRecursive(f)));
+
+            return
+                string.Concat(Constants.Tab, constraint.GetAttributeValue(XMLAttributes.Type), Constants.Space, string.Join(Constants.Comma, indexerList), Constants.Comma, expression);
         }
 
         /// <summary>
@@ -184,11 +218,6 @@ namespace Converter.Core
             setBuilder.AppendLine(subSetExpression);
         }
 
-        //private string ExpandSequence(XElement xElement, StringBuilder seqBuilder)
-        //{
- 
-        //}
-
         /// <summary>
         /// 
         /// </summary>
@@ -198,22 +227,24 @@ namespace Converter.Core
         {
             if (xElement.HasElements == false)
             {
-                //No Child Elements(element is a Variable)
+                //No Child Elements(element is a Variable or a Literal)
                 if (xElement.Name.ToString().IsEqual(XMLTags.Variable))   //element is a variable
                 {
                     if (xElement.Attribute("name") != null)
-                    {
                         return xElement.Attribute("name").Value;
-                    }
                     else
-                    {
                         return xElement.DescendantNodes().FirstOrDefault().ToString();
-                    }
+                }
+                else if (xElement.Name.ToString().IsEqual(XMLTags.Literal))  //element is a literal
+                {
+                    string literalDataType = xElement.GetAttributeValue(XMLAttributes.DataType);
+                    if (literalDataType == XMLAttributeValues.StringDataType)
+                        return "\"" + xElement.GetAttributeValue(XMLAttributes.Value) + "\"";
+                    else
+                        return xElement.GetAttributeValue(XMLAttributes.Value);
                 }
                 else
-                {
                     return string.Empty;
-                }
             }
             else
             {

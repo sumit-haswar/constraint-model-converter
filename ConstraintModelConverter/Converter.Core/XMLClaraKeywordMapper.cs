@@ -56,6 +56,7 @@ namespace Converter.Core
 
             //DataType Mappings
             this.DataTypeMap.Add("bool", "Boolean");
+            this.DataTypeMap.Add("", "");
             //this.DataTypeMap.Add("bool", "Boolean");
             //this.DataTypeMap.Add("bool", "Boolean");
         }

@@ -36,6 +36,10 @@ namespace Converter.Core
         public const string Literal = "literal";
         public const string Lower = "lower";
         public const string Upper = "upper";
+        public const string Iterator = "iterator";
+        public const string Expression = "expression";
+        public const string Indexers = "indexers";
+        public const string Index = "index";
     }
 
     public struct XMLAttributes
